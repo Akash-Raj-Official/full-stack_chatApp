@@ -7,7 +7,6 @@ spec:
     - ReadWriteOnce
   capacity:
     storage: 5Gi
-  storageClassName: manual
+  storageClassName: ""
   hostPath:
     path: /data
-    type: DirectoryOrCreate
