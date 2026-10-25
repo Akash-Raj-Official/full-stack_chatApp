@@ -1,6 +1,12 @@
 # Kubernetes deployment
 
-## Create the application Secret
+## Prepare the namespace and Secret
+
+Create the namespace before creating its Secret:
+
+```powershell
+kubectl apply -f .\k8s\namespace.yml
+```
 
 `backend-secret.env` is intentionally not committed. Create it locally with the
 following keys, using the MongoDB credentials for this deployment:
@@ -25,15 +31,8 @@ kubectl create secret generic backend-secret `
   --dry-run=client -o yaml | kubectl apply -f -
 ```
 
-## Apply the manifests
-
-```powershell
-kubectl apply -f .\k8s\namespace.yml
-```
-
-Create or update the Secret using the command above. Do not apply the env file
-as a Kubernetes manifest. After creating the namespace and Secret, apply the
-remaining manifests:
+Do not apply the env file as a Kubernetes manifest. After creating the namespace
+and Secret, apply the remaining manifests:
 
 ```powershell
 kubectl apply -f .\k8s\mongodb-pv.yml
