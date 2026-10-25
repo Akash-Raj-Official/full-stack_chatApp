@@ -21,3 +21,17 @@ spec:
           env:
             - name: NODE_ENV
               value: production
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            periodSeconds: 20
+            timeoutSeconds: 3
+            failureThreshold: 3

@@ -28,3 +28,15 @@ spec:
                 secretKeyRef:
                   name: backend-secret
                   key: MONGODB_URI
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: JWT_SECRET
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5001
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
